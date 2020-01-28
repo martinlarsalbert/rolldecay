@@ -7,3 +7,5 @@ statsmodels
 jupyterlab
 sympy
 pylatex
+rigidbodysimulator
+dill

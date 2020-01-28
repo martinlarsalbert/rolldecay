@@ -2,6 +2,8 @@ import rolldecay.special_symbol as ss
 import sympy as sp
 import sympy.physics.mechanics as me
 
+t = ss.Symbol(name='t',description='time',unit='s')
+
 phi = me.dynamicsymbols('phi')  # Roll angle
 phi_dot = phi.diff()
 phi_dot_dot = phi_dot.diff()
