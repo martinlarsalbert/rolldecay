@@ -21,7 +21,7 @@ def roll_decay_time_step(states, t, d, omega0, zeta):
 def simulate(t :np.ndarray, phi0 :float, phi1d0 :float,omega0:float, d:float, zeta:float)->pd.DataFrame:
     """
     Simulate a roll decay test using the quadratic method.
-    
+
     :param t: time vector to be simulated [s]
     :param phi0: initial roll angle [rad]
     :param phi1d0: initial roll speed [rad/s]
