@@ -1,3 +1,29 @@
 \section{Introduction}
 \label{se:introduction}
 If an undamaged ship capsizes, it will most likely do so by reaching a critical roll angle, for obvious geometrical reasons. Ship stability in roll has therefore a lot of attention when designing ships. When also considering the dynamics of ships, the damping of the roll motion will also be very important, in order to avoid large motions when near the resonance frequency. Verifying that a ship has sufficient roll damping is therefore a critical part of all ship designs. 
+
+\subsection{Research Area}
+IMO has in the second generation intact stability criteria \cite{imo_second_nodate} addressed six possible dynamic stability failures. Having sufficient roll damping is very important in these failure modes, especially in the modes: \emph{Parametric roll}, \emph{Dead Ship condition} and \emph{Excessive acceleration}. Semi-empirical formulas to predict roll damping are examined in this project using \emph{Machine Learning} (ML) techniques. Historical data from roll decay scale model tests is used to examine the accuracy of existing semi-empirical methods to make better predictions of roll damping for future ships.
+		
+\subsection{Purpose, Objective}
+Many crucial decisions that are made during the early design stage of ships, are based on predictions where the roll damping has been calculated with semi-empirical methods. The accuracy of these methods, when applied to modern ship designs, is however quite uncertain. Söder et al. \cite{soder_ikeda_2019} has for instance investigated Ikeda’s method for modern volume carriers where it was concluded that the speed dependence of the bilge keels damping was underestimated.
+
+\subsection{Methods}
+The accuracy of state of the art semi-empirical roll damping methods are investigated by benchmarks of a large number \textcolor{red}{(how many?)} of roll decay model tests. Machine Learning techniques are used to investigate if the best semi-empirical methods can be improved. The methodology used in this project is general, so that it can, with some effort, be reused to other aspects of ship dynamics such as: seakeeping and manoeuvring.
+
+\subsubsection{Steps}
+\begin{itemize}
+	\item Develop methods to determine roll damping coefficients using parameter identification techniques on roll decay model test results. The methods should be general enough to be run automatically on a large number of model tests.
+    \item Use the developed methods to build a roll damping data base.
+    \item Verify existing semi-empirical formulas using the roll damping data base.
+    \item Improve existing semi-empirical formulas using machine learning on the roll damping data base.
+\end{itemize}		
+			
+			
+\subsection{Simulations/Analysis}
+
+			
+\subsection{Results}
+The accuracy of existing semi-empirical formulas to predict roll damping will be estimated based on statistical data from the roll damping data base.
+
+Improvements of existing semi-empirical formulas will be proposed. 
