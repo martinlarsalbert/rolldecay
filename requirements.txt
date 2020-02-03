@@ -9,3 +9,4 @@ sympy
 pylatex
 rigidbodysimulator
 dill
+rolldecay-estimators
