@@ -10,3 +10,4 @@ pylatex
 rigidbodysimulator
 dill
 rolldecay-estimators
+pytest
