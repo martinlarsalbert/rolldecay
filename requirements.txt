@@ -11,3 +11,4 @@ rigidbodysimulator
 dill
 rolldecay-estimators
 pytest
+xarray
