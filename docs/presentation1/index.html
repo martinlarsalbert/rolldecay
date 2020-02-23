@@ -22,17 +22,7 @@
   <body>
     <textarea id="source">
 
-class: center, middle
 
-# DEMOPS: Roll decay
-
-Blablablab...
-
----
-
-# Roll decay...
-
-bla vlas
 
 
     </textarea>
@@ -44,6 +34,7 @@ bla vlas
         return '<img src="' + url + '" style="width: ' + percentage + '" />';
       };
       var slideshow = remark.create({
+          sourceUrl: 'markdown.md',
         ratio: '4:3', 
         highlightLanguage: 'python',
         highlightStyle: 'railscasts'
