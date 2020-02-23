@@ -12,3 +12,4 @@ dill
 rolldecay-estimators
 pytest
 xarray
+nbconvert
