@@ -3,6 +3,7 @@ import nbformat
 # 1. Import the exporter
 from nbconvert import MarkdownExporter
 import nbconvert.preprocessors
+import nbconvert.writers
 from traitlets.config import Config
 import os
 import shutil
@@ -33,14 +34,17 @@ def convert_notebook_to_presentation(notebook_path, markdown_path):
 
     # 2. Instantiate the exporter. We use the `basic` template for now; we'll get into more details
     # later about how to customize the exporter further.
-    html_exporter = MarkdownExporter(config = c)
-    html_exporter.template_file = os.path.join(path,'hidecode.tplx')
+    markdown_exporter = MarkdownExporter(config = c)
+    markdown_exporter.template_file = os.path.join(path,'hidecode.tplx')
 
     # 3. Process the notebook we loaded earlier
-    (body, resources) = html_exporter.from_notebook_node(nb)
+    (body, resources) = markdown_exporter.from_notebook_node(nb)
 
-    with open(markdown_path, 'w') as file:
-        file.write(body)
+    writer = nbconvert.writers.FilesWriter()
+    writer.write(body, resources, markdown_path)
+
+    #with open(markdown_path, 'w') as file:
+    #    file.write(body)
 
 def find_notebooks(path = ''):
 
