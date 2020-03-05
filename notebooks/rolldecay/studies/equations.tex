@@ -1,11 +1,11 @@
 B_{44}=B_{F}+B_{W}+B_{E}+B_{L}+B_{B K}
-B_{F}=\frac{4}{3 \pi} \rho s_{f} r_{f}^{3} \varphi_{a} \omega c_{f}
-\begin{array}{l}c_{f}=1.328\left(\frac{3.22 r_{f}^{2} \varphi_{a}^{2}}{T v}\right)^{\frac{1}{2}} \\ r_{f}=\frac{\left(0.887+0.145 C_{b}\right)\left(1.7 d+C_{b} B\right)-2 O G}{\pi} \\ s_{f}=L_{P P}\left(1.75 d+C_{b} B\right)\end{array}
+B_{F}=\frac{4}{3 \pi} \rho s_{f} r_{f}^{3} \phi_{a} \omega c_{f}
+\begin{array}{l}c_{f}=1.328\left(\frac{3.22 r_{f}^{2} \phi_{a}^{2}}{T v}\right)^{\frac{1}{2}} \\ r_{f}=\frac{\left(0.887+0.145 C_{b}\right)\left(1.7 d+C_{b} B\right)-2 O G}{\pi} \\ s_{f}=L_{P P}\left(1.75 d+C_{b} B\right)\end{array}
 
 x_{1}=B / d, x_{2}=C_{b}, x_{3}=C_{m}, x_{4}=1-O G / d, x_{5}=\hat{\omega}
 
 
-\hat{B}_{W}=A_{1} / x_{5} \cdot \exp \left(-A_{2}\left(\log\left(x_{5}\right)-A_{3}\right)^{2} / 1.44\right)
+\hat{B}_{W}=A_{1} / x_{5} \cdot \exp{-A_{2}\left(\ln{x_{5}}-A_{3}\right)^{2} / 1.44}
 
 A_{1}=\left(A_{11} x_{4}^{2}+A_{12} x_{4}+A_{13}\right) A A_{1}
 A_{2}=-1.402 x_{4}^{3}+7.189 x_{4}^{2}-10.993 x_{4}+9.45
@@ -52,7 +52,7 @@ A_{133}=0.237096 x_{1}^{3}-3.535062 x_{1}^{2}+16.368376 x_{1}-20.539908
 A_{134}=-0.067119 x_{1}^{3}+0.966362 x_{1}^{2}-4.407535 x_{1}+5.894703
 
 
-B_{E}^{\prime}=\frac{4}{3 \pi} \rho L_{P P} d^{2} r_{\max }^{2} \varphi_{a} \omega\left\{\left(1-f_{1} \frac{R}{d}\right)\left(1-\frac{O G}{d}-f_{1} \frac{R}{d}\right) +f_{2}\left(H_{0}-f_{1} \frac{R}{d}\right)^{2}\right\} C_{P 0}
+B_{E}^{\prime}=\frac{4}{3 \pi} \rho L_{P P} d^{2} r_{\max }^{2} \phi_{a} \omega\left\{\left(1-f_{1} \frac{R}{d}\right)\left(1-\frac{O G}{d}-f_{1} \frac{R}{d}\right) +f_{2}\left(H_{0}-f_{1} \frac{R}{d}\right)^{2}\right\} C_{P 0}
 
 
 \begin{array}{l}f_{1}=\frac{1}{2}[1+\tanh{20(\sigma-0.7)}] \\ f_{2}=\frac{1}{2}(1-\cos \pi \sigma)-1.5\left(1-e^{-5(1-\sigma)}\right) \sin ^{2} \pi \sigma \\ C_{P 0}=\frac{1}{2}\left(0.87 e^{-\gamma}-4 e^{-0.1877}+3\right) \\ H_{0}=\frac{B}{2 d} \\ \sigma=\frac{S}{B d}\end{array}
@@ -61,36 +61,36 @@ x_{1}=B / d
 x_{2}=C_{b}
 x_{3}=C_{m}
 x_{4}=O G / d
-%\hat{B}_{E}=\frac{4 L_{p p} d^{4} \hat{\omega} \varphi_{a}}{3 \pi \nabla B^{2}}C_{R}
-\hat{B}_{E}=\frac{4 \hat{\omega} \varphi_{a}}{3 \pi x_{2} \cdot x_{1}^{3}} C_{R}
+%\hat{B}_{E}=\frac{4 L_{p p} d^{4} \hat{\omega} \phi_{a}}{3 \pi \nabla B^{2}}C_{R}
+\hat{B}_{E}=\frac{4 \hat{\omega} \phi_{a}}{3 \pi x_{2} \cdot x_{1}^{3}} C_{R}
 
-C_{R}=A_{E} \cdot \exp \left(B_{E 1}+B_{E 2} \cdot x_{3}^{B_{E 3}}\right)
+C_{R}=A_{E} \cdot \exp{B_{E 1}+B_{E 2} \cdot x_{3}^{B_{E 3}}}
 A_{E}=\left(-0.0182 x_{2}+0.0155\right) \cdot\left(x_{1}-1.8\right)^{3}-79.414 x_{2}^{4}\quad+215.695 x_{2}^{3}-215.883 x_{2}^{2}+93.894 x_{2}-14.848
 
 B_{E 1}=&\left(-0.2 x_{1}+1.6\right) \cdot\left(3.98 x_{2}-5.1525\right) \cdot x_{4} \left\{\left(0.9717 x_{2}^{2}-1.55 x_{2}+0.723\right) \cdot x_{4}+\left(0.04567 x_{2}+0.9408\right)\right\}
 B_{E 2}=&\left(0.25 x_{4}+0.95\right) \cdot x_{4} &-219.2 x_{2}^{3}+443.7 x_{2}^{2}-283.3 x_{2}+59.6
 B_{E 3}=&\left(46.5-15 x_{1}\right) \cdot x_{2}+11.2 x_{1}-28.6
 
-{l}B_{N}=\frac{8}{3 \pi} \rho r^{3} l_{B K} b_{B K} \varphi_{a} \omega f^{2}\left(22.5 \frac{b_{B K}}{r \pi f \varphi_{a}}+2.4\right)
+{l}B_{N}=\frac{8}{3 \pi} \rho r^{3} l_{B K} b_{B K} \phi_{a} \omega f^{2}\left(22.5 \frac{b_{B K}}{r \pi f \phi_{a}}+2.4\right)
 f=1+0.3 \exp{-160(1-\sigma)}
 
-B_{s}=\frac{4}{3 \pi} \rho r^{2} d^{2} \omega \varphi_{a} f^{2} I
+B_{s}=\frac{4}{3 \pi} \rho r^{2} d^{2} \omega \phi_{a} f^{2} I
 I=\frac{1}{d^{2}} \int C_{P 1} l_{B K} d s
 
 
 C_{P1face} &=1.2
-C_{P1back} &=-\frac{22.5 b_{B K}}{\pi r f \varphi_{a}}-1.2
+C_{P1back} &=-\frac{22.5 b_{B K}}{\pi r f \phi_{a}}-1.2
 
 x_{1}=B / d
 x_{2}=C_{b}
 x_{3}=C_{m}
 x_{4}=O G / d
 x_{5}=\hat{\omega}
-x_{6}=\varphi_{a}(\mathrm{deg})
+x_{6}=\phi_{a}(\mathrm{deg})
 x_{7}=b_{B K} / B
 x_{8}=l_{B K} / L_{P P}
 
-\hat{B}_{B K}=A_{B K} \cdot \exp \left(B_{B K 1}+B_{B K 2} \cdot x_{3}^{B_{B K 3}}\right) \cdot x_{5}
+\hat{B}_{B K}=A_{B K} \cdot \exp{B_{B K 1}+B_{B K 2} \cdot x_{3}^{B_{B K 3}}} \cdot x_{5}
 A_{B K}=f_{1} \cdot f_{2} \cdot f_{3}
 
 f_{1}=\left(-0.3651 x_{2}+0.3907\right) \cdot\left(x_{1}-2.83\right)^{2}-2.21 x_{2}+2.632
