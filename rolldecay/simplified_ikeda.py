@@ -18,24 +18,22 @@ from numpy import log as LOG
 from numpy import sqrt as SQRT
 from numpy import pi as PI
 
-def calculate_roll_damping(LPP,BD,CB,CMID,OGD,PHI,TW,lBK,BBKB,OMEGA,BRTH,
-                           DRAFT,OMEGAHAT):
+def calculate_roll_damping(LPP,Beam,CB,CMID,OG,PHI,lBK,bBK,OMEGA,
+                           DRAFT):
     """
     ********************************************************************
     *** Calculation of roll damping by the proposed predition method ***
     ********************************************************************
 
-    :param LPP:
-    :param BD:
-    :param CB:
-    :param CMID:
-    :param OGD:
-    :param PHI:
-    :param TW:
-    :param lBK:
-    :param BBKB:
-    :param OMEGA:
-    :param BRTH:
+    :param LPP: [m]
+    :param Beam: [m]
+    :param CB: Block coefficient [-]
+    :param CMID: Middship coefficient (A_m/(B*d) [-]
+    :param OG: distance from the still water level O to the roll axis G [m]
+    :param PHI: Roll angle [deg]
+    :param lBK: length of bilge keel [m]
+    :param bBK: height of bilge keel [m]
+    :param OMEGA: Frequency of motion [rad/s]
     :param DRAFT: DRAFT : ship draught [m]
     :param OMEGAHAT:
     :return: B44HAT, BFHAT, BWHAT, BEHAT, BBKHAT
@@ -48,9 +46,15 @@ def calculate_roll_damping(LPP,BD,CB,CMID,OGD,PHI,TW,lBK,BBKB,OMEGA,BRTH,
     """
 
     LBKL=lBK/LPP
+    BD = Beam/DRAFT
+    OGD = OG/DRAFT
+    BBKB = bBK/Beam
+    BRTH = Beam
+    OMEGAHAT = OMEGA * SQRT(BRTH / 2 / 9.81)
+    TW = 2 * PI / OMEGA
 
     #ToDo: This must be a typo in the original fortran code shouldn't it be 1025!?
-    RO=102  # Density of water
+    RO=1025  # Density of water
     KVC = 1.14e-6  # Kinematic Viscosity Coefficient
 
     #*** Frictional Component ***
