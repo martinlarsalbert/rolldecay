@@ -53,7 +53,7 @@ def calculate_roll_damping(LPP,Beam,CB,CMID,OG,PHI,lBK,bBK,OMEGA,
     OMEGAHAT = OMEGA * SQRT(BRTH / 2 / 9.81)
     TW = 2 * PI / OMEGA
 
-    #ToDo: This must be a typo in the original fortran code shouldn't it be 1025!?
+    #There must be a typo in the original fortran code it was 102 instead of 1025!?
     RO=1025  # Density of water
     KVC = 1.14e-6  # Kinematic Viscosity Coefficient
 
