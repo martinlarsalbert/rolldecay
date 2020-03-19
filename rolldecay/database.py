@@ -40,6 +40,9 @@ def load(rolldecay_table_name='rolldecay_direct_improved',sql=None,only_latest_r
         by = ['model_number', 'loading_condition_id', 'ship_speed']
         df_rolldecay = df_rolldecay.groupby(by=by).apply(func=get_latest)
 
+    df_rolldecay.drop(columns = by, inplace=True)
+    df_rolldecay.reset_index(inplace=True)
+    df_rolldecay.set_index('run_id', inplace=True)
     return df_rolldecay
 
 def get_db():

@@ -22,6 +22,7 @@ phi = me.dynamicsymbols('phi')  # Roll angle
 #phi = ss.Symbol(name='phi', description='Roll angle', unit='rad')  # Roll angle
 phi_dot = phi.diff()
 phi_dot_dot = phi_dot.diff()
+phi_a = ss.Symbol(name='phi_a', description='Initial roll amplitude', unit='rad')
 
 zeta = sp.Symbol('zeta') # Linear roll damping coefficeint
 omega0 = sp.Symbol('omega0')  # Natural roll frequency
@@ -32,8 +33,7 @@ A_44 = ss.Symbol(name='A_44', description='General roll inertia', unit='kg*m**2'
 B_1,B_2 = sp.symbols('B_1 B_2')
 C = sp.Symbol(name='C')  # Introducing a helper coefficient C
 
-
-
+B_e = ss.Symbol(name='B_e', description='Equivalen linearized damping', unit='Nm/(rad/s)')
 
 ## Functions:
 GZ = sp.Function('GZ')(phi)

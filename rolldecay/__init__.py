@@ -12,4 +12,6 @@ dir_path = os.path.dirname(__file__)
 base_path = os.path.split(dir_path)[0]
 data_path = os.path.join(base_path,'data')
 paper_path = os.path.join(base_path,'paper')
+equations_path = os.path.join(paper_path,'equations')
+
 paper_figures_path= os.path.join(paper_path,'figures')

@@ -44,3 +44,8 @@ roll_decay_equation_quadratic = sp.Eq(sp.expand(eq.lhs).subs(subs), 0)
 roll_decay_equation_quadratic = sp.factor(roll_decay_equation_quadratic, phi_dot)
 
 roll_decay_equation_linear = roll_decay_equation_quadratic.subs(d,0)
+
+## Equivalt linearized damping:
+B_e_equation = sp.Eq(B_e,B_1+8/(3*sp.pi)*omega0*phi_a*B_2)
+
+
