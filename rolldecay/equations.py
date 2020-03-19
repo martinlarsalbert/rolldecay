@@ -1,6 +1,5 @@
 import sympy as sp
-from rolldecayestimators.symbols import *
-import rolldecayestimators.direct_linear_estimator as direct_linear_estimator
+from rolldecay.symbols import *
 
 # General roll motion equation according to Himeno:
 lhs = A_44*phi_dot_dot + B_44 + C_44
@@ -11,52 +10,35 @@ roll_equation_himeno = sp.Eq(lhs=lhs, rhs=rhs)
 roll_decay_equation_general_himeno = roll_equation_himeno.subs(M_44,0)
 
 
+b44_quadratic_equation = sp.Eq(B_44,B_1*phi_dot + B_2*phi_dot*sp.Abs(phi_dot) )
+b44_quadratic_linear = sp.Eq(B_44,B_1*phi_dot)
 
-# General equation for roll motion:
-lhs = I*phi_dot_dot + B*phi_dot + m*g*GZ
-rhs = M_x
-roll_equation_general = sp.Eq(lhs=lhs, rhs=rhs)
+eqs = [roll_decay_equation_general_himeno,
+            b44_quadratic_equation,
+            ]
+roll_decay_equation_himeno_quadratic =  roll_decay_equation_general_himeno.subs(B_44,
+                                                        sp.solve(b44_quadratic_equation,B_44)[0])
 
-# No external forces (during roll decay)
-roll_decay_equation_general = roll_equation_general.subs(M_x,0)
 
-##### Linear
-linear_stiffness_equation = sp.Eq(GZ,GM*phi)
+restoring_equation = sp.Eq(C_44,m*g*GZ)
+restoring_equation_linear = sp.Eq(C_44,m*GM*phi)
+
+C_equation = sp.Eq(C,C_44/phi)
+roll_decay_equation_himeno_quadratic_c = roll_decay_equation_himeno_quadratic.subs(C_44,sp.solve(C_equation, C_44)[0])
+zeta_equation = sp.Eq(2*zeta,B_1/A_44)
+d_equation = sp.Eq(d,B_2/A_44)
+omega0_equation = sp.Eq(omega0,sp.sqrt(C/A_44))
+
+eq = sp.Eq(roll_decay_equation_himeno_quadratic_c.lhs/A_44,0)  # helper equation
 
 subs = [
-    (GZ, sp.solve(linear_stiffness_equation, GZ)[0]),
+    (B_1, sp.solve(zeta_equation, B_1)[0]),
+    (B_2, sp.solve(d_equation, B_2)[0]),
+    (C / A_44, sp.solve(omega0_equation, C / A_44)[0])
+
 ]
-roll_decay_linear_equation = roll_decay_equation_general.subs(subs)
 
-linear_damping_equation = sp.Eq(B/I,zeta)
+roll_decay_equation_quadratic = sp.Eq(sp.expand(eq.lhs).subs(subs), 0)
+roll_decay_equation_quadratic = sp.factor(roll_decay_equation_quadratic, phi_dot)
 
-
-# Solve the diff equation by introducing helper variables:
-phi_old,p_old = me.dynamicsymbols('phi_old p_old')
-velocity_equation_linear = sp.Eq(lhs=phi.diff(),rhs=p_old)
-roll_diff_equation_linear_subs = direct_linear_estimator.roll_diff_equation.subs(
-    [
-        (phi.diff(), p_old),
-        (phi, phi_old),
-
-    ]
-)
-solution = sp.solve(roll_diff_equation_linear_subs,(p_old.diff()))[0]
-acceleration_equation_linear = sp.Eq(lhs=phi.diff().diff(), rhs=solution)
-
-A,B = sp.symbols('A B')  # helpers
-A_equation = sp.Eq(lhs=A, rhs=-2*zeta/omega0)
-B_equation = sp.Eq(lhs=B, rhs=-1/(omega0**2))
-
-zeta_equation = sp.Eq(lhs=zeta, rhs=sp.solve(A_equation,zeta)[0])
-omega_equation = sp.Eq(lhs=omega0, rhs=sp.solve(B_equation,omega0)[0])
-
-##### Quadratic
-
-
-C = sp.symbols('C')  # helpers
-C_equation = sp.Eq(lhs=C, rhs=B*d)
-d_equation = sp.Eq(lhs=d, rhs=sp.solve(C_equation,d)[0])
-
-##### Quadratic improved
-quadratic_stiffness_equation = sp.Eq(GZ,GM*phi+dGM*sp.Abs(phi)*phi)
+roll_decay_equation_linear = roll_decay_equation_quadratic.subs(d,0)
