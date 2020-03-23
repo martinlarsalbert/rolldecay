@@ -12,13 +12,15 @@ SELECT * from
 %s
 INNER JOIN run
 ON %s.run_id == run.id
-    INNER JOIN loading_conditions
-    ON (run.loading_condition_id == loading_conditions.id)
-        INNER JOIN models
-        ON run.model_number == models.model_number
-            INNER JOIN ships
-            ON models.ship_name == ships.name
-
+    INNER JOIN projects
+    ON run.project_number==projects.project_number
+        INNER JOIN loading_conditions
+        ON (run.loading_condition_id == loading_conditions.id)
+            INNER JOIN models
+            ON run.model_number == models.model_number
+                INNER JOIN ships
+                ON models.ship_name == ships.name
+        
 """
 
 engine = create_engine('sqlite:///' + data.mdl_db_path)
