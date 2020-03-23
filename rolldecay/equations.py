@@ -27,7 +27,7 @@ C_equation = sp.Eq(C,C_44/phi)
 C_equation_linear = C_equation.subs(C_44,sp.solve(restoring_equation_linear,C_44)[0])
 
 roll_decay_equation_himeno_quadratic_c = roll_decay_equation_himeno_quadratic.subs(C_44,sp.solve(C_equation, C_44)[0])
-zeta_equation = sp.Eq(2*zeta,B_1/A_44)
+zeta_equation = sp.Eq(2*zeta*omega0,B_1/A_44)
 d_equation = sp.Eq(d,B_2/A_44)
 omega0_equation = sp.Eq(omega0,sp.sqrt(C/A_44))
 
