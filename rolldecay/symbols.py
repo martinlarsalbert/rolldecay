@@ -30,8 +30,9 @@ d = sp.Symbol('d')  # Nonlinear roll damping coefficient
 
 A_44 = ss.Symbol(name='A_44', description='General roll inertia', unit='kg*m**2')
 
-B_1,B_2 = sp.symbols('B_1 B_2')
+B_1,B_2,B_3 = sp.symbols('B_1 B_2 B_3')
 C = sp.Symbol(name='C')  # Introducing a helper coefficient C
+C_1, C_3, C_5 = sp.symbols('C_1 C_3 C_5')
 
 B_e = ss.Symbol(name='B_e', description='Equivalen linearized damping', unit='Nm/(rad/s)')
 
@@ -40,5 +41,18 @@ GZ = sp.Function('GZ')(phi)
 B_44 = sp.Function('B_{44}')(phi_dot)
 C_44 = sp.Function('C_{44}')(phi)
 M_44 = sp.Function('M_{44}')(omega*t)
+
+## Analytical
+delta = sp.symbols('delta')
+y = me.dynamicsymbols('y')
+y0 = me.dynamicsymbols('y0')
+y0_dot = y0.diff()
+y0_dotdot = y0_dot.diff()
+D = sp.symbols('D')
+
+phi_0 = me.dynamicsymbols('phi_0')
+phi_0_dot = phi_0.diff()
+phi_0_dotdot = phi_0_dot.diff()
+
 
 
