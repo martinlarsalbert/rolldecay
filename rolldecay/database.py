@@ -6,6 +6,7 @@ import pandas as pd
 import data
 from sqlalchemy import create_engine
 from mdldb.mdl_db import MDLDataBase
+import signal_lab.mdl_to_evaluation
 
 sql_template = """
 SELECT * from
@@ -41,10 +42,10 @@ def load(rolldecay_table_name='rolldecay_direct_improved',sql=None,only_latest_r
     if only_latest_runs:
         by = ['model_number', 'loading_condition_id', 'ship_speed']
         df_rolldecay = df_rolldecay.groupby(by=by).apply(func=get_latest)
+        df_rolldecay.drop(columns = by, inplace=True)
+        df_rolldecay.reset_index(inplace=True)
+        df_rolldecay.set_index('run_id', inplace=True)
 
-    df_rolldecay.drop(columns = by, inplace=True)
-    df_rolldecay.reset_index(inplace=True)
-    df_rolldecay.set_index('run_id', inplace=True)
     return df_rolldecay
 
 def get_db():
@@ -58,3 +59,13 @@ def get_latest(group):
     s = group.sort_values(by=['date','run_number'], ascending=False).iloc[0]
     s['run_id'] = s.name
     return s
+
+def load_run(db_run):
+
+    ascii_file = db_run.load()
+    df_raw = ascii_file.channels
+
+    df = signal_lab.mdl_to_evaluation.do_transforms(df=df_raw)
+    df.rename(columns={'MA/Roll': 'phi'}, inplace=True)
+
+    return df

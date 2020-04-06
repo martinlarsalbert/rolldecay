@@ -9,6 +9,9 @@ import sympy.physics.mechanics as me
 t = ss.Symbol(name='t',description='time',unit='s')
 I = ss.Symbol(name='I',description='total roll inertia',unit='kg*m**2')
 B = ss.Symbol(name='B',description='total roll damping',unit='kg*m*/s')
+L_pp = ss.Symbol(name='L_pp',description='ship perpendicular length',unit='m')
+beam = ss.Symbol(name='beam',description='ship beam',unit='m')
+
 rho = ss.Symbol(name='rho',description='water density',unit='kg/m3')
 g = ss.Symbol(name='g',description='acceleration of gravity',unit='m/s**2')
 Disp = ss.Symbol(name='Disp',description='displacement',unit='m**3')
