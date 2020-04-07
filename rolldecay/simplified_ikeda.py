@@ -50,6 +50,7 @@ def calculate_roll_damping(LPP,Beam,CB,CMID,OG,PHI,lBK,bBK,OMEGA,
     OGD = OG/DRAFT
     BBKB = bBK/Beam
     BRTH = Beam
+    OMEGA/= 2  # Magic factor!??? This value seemt o give better results..?
     OMEGAHAT = OMEGA * SQRT(BRTH / 2 / 9.81)
     TW = 2 * PI / OMEGA
 
