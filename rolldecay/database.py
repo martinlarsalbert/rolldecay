@@ -7,6 +7,8 @@ import data
 from sqlalchemy import create_engine
 from mdldb.mdl_db import MDLDataBase
 import signal_lab.mdl_to_evaluation
+import rolldecay
+import os
 
 sql_template = """
 SELECT * from
@@ -26,7 +28,8 @@ ON %s.run_id == run.id
 
 engine = create_engine('sqlite:///' + data.mdl_db_path)
 
-def load(rolldecay_table_name='rolldecay_direct_improved',sql=None,only_latest_runs=True, limit_score=0.96):
+def load(rolldecay_table_name='rolldecay_direct_improved',sql=None,only_latest_runs=True, limit_score=0.96,
+         include_softmooring=False):
 
     db = get_db()
 
@@ -38,6 +41,10 @@ def load(rolldecay_table_name='rolldecay_direct_improved',sql=None,only_latest_r
 
     mask = df_rolldecay['score'] > limit_score
     df_rolldecay = df_rolldecay.loc[mask]
+
+    if not include_softmooring:
+        mask = df_rolldecay['Körfallstyp']!='Rak bana'
+        df_rolldecay = df_rolldecay.loc[mask]
 
     if only_latest_runs:
         by = ['model_number', 'loading_condition_id', 'ship_speed']
@@ -60,9 +67,14 @@ def get_latest(group):
     s['run_id'] = s.name
     return s
 
-def load_run(db_run):
+def load_run(db_run, load_temp=True, save_temp=True, save_as_example=False):
 
-    ascii_file = db_run.load()
+    if save_as_example:
+        other_save_directory = os.path.join(rolldecay.data_path,'example_data')
+    else:
+        other_save_directory = None
+
+    ascii_file = db_run.load(load_temp=load_temp, save_temp=save_temp, other_save_directory=other_save_directory)
     df_raw = ascii_file.channels
 
     df = signal_lab.mdl_to_evaluation.do_transforms(df=df_raw)
