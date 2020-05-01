@@ -29,7 +29,7 @@ ON %s.run_id == run.id
 engine = create_engine('sqlite:///' + data.mdl_db_path)
 
 def load(rolldecay_table_name='rolldecay_direct_improved',sql=None,only_latest_runs=True, limit_score=0.96,
-         include_softmooring=False, selection_table_name=None):
+         include_softmooring=False, exclude_table_name=None):
 
 
     db = get_db()
@@ -54,9 +54,9 @@ def load(rolldecay_table_name='rolldecay_direct_improved',sql=None,only_latest_r
         df_rolldecay.reset_index(inplace=True)
         df_rolldecay.set_index('run_id', inplace=True)
 
-    if not selection_table_name is None:
-        df_selection = pd.read_sql_table(table_name=selection_table_name,con=engine, index_col='run_id',)
-        common_index = list(set(df_selection.index) & set(df_rolldecay.index))
+    if not exclude_table_name is None:
+        df_exclude = pd.read_sql_table(table_name=exclude_table_name,con=engine, index_col='run_id',)
+        common_index = list(set(df_rolldecay.index) - set(df_exclude.index))
         df_rolldecay=df_rolldecay.loc[common_index].copy()
 
     return df_rolldecay
