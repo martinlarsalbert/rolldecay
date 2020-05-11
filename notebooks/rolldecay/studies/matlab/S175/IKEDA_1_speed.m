@@ -1,3 +1,6 @@
+clear all;
+close all;
+clc;
 clear global
 global vcg B d A bBK R g OG Ho ra visc Cb L%constants only!!
 
@@ -34,11 +37,11 @@ Bilgekeel=[];
 Friction=[];
 Lift=[];
 
-Vvec=[1:17];
-for V=Vvec
+V=0;
+
 % components
 % wave
-[bw44] = Bw_S175(wE,V)
+bw44 = Bw_S175(wE,V)
 
 %bilge keel
 [Bp44BK_N0,Bp44BK_H0,B44BK_L,B44BKW0] = BilgeKeel(wE,fi_a,V);
@@ -53,31 +56,15 @@ B44_BK = B44BK_N0+B44BK_H0+B44BK_L
 B44F = Frictional(wE,fi_a,V)
 
 % Hull lift
-[B44L] = HullLift(V)
+B44L = HullLift(V)
 % hold on
 % plot(V,bw44,'*',V,B44_BK,'.',V,B44F,'x',V,B44L,'o')
 % hold on
 
-Wave=[Wave bw44];
-Bilgekeel=[Bilgekeel B44_BK];
-Friction=[Friction B44F];
-Lift=[Lift B44L];
-end
-
+Bilgekeel=B44_BK;
+Friction=B44F;
+Lift=B44L;
 
 
 Total=[Wave; Friction; Lift; Bilgekeel]'*ND_factor;
-VVEC=[Vvec; Vvec; Vvec; Vvec]'
-FnVEC=VVEC./sqrt(g*L);
-h=area(FnVEC,Total)
-set(h(1),'FaceColor',[0 0 0.3])
-set(h(2),'FaceColor',[0 0 0.5])
-set(h(3),'FaceColor',[0 0 0.7])
-set(h(4),'FaceColor',[0 0 1])
-set(h,'LineStyle','-','LineWidth',2) % Set all to same value
-legend(['Wave'],['Friction'],['Lift'],['Bilge Keel'])
 
-% gtext('Wave')
-% gtext('Friction')
-% gtext('Lift')
-% gtext('Bilge Keel')
