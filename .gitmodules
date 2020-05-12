@@ -1,0 +1,3 @@
+[submodule "the_paper"]
+	path = the_paper
+	url = https://github.com/martinlarsalbert/A-semi-empirical-method-for-predicting-roll-damping-based-on-machine-learning.git
