@@ -11,7 +11,7 @@ import os
 dir_path = os.path.dirname(__file__)
 base_path = os.path.split(dir_path)[0]
 data_path = os.path.join(base_path,'data')
-paper_path = os.path.join(base_path,'paper')
+paper_path = os.path.join(base_path,'the_paper')
 notebooks_path = os.path.join(base_path,'notebooks','rolldecay')
 
 equations_path = os.path.join(paper_path,'equations')
