@@ -14,30 +14,35 @@ def variate_ship(ship, key, changes):
 
     return df
 
-def calculate_variation(df):
-    result = df.apply(func=calculate, axis=1)
+def calculate_variation(df, catch_error=False):
+    result = df.apply(func=calculate, catch_error=catch_error, axis=1)
     return result
 
-def plot_variation(ship, key='lpp', changes=None, ax=None):
+def plot_variation(ship, key='lpp', changes=None, ax=None, catch_error=False, plot_change_factor=True):
 
     if changes is None:
         N = 30
         changes = np.linspace(0.5, 1.5, N)
 
     df = variate_ship(ship=ship, key=key, changes=changes)
-    result = calculate_variation(df=df)
+    result = calculate_variation(df=df, catch_error=catch_error)
+    result[key] = df[key].copy()
 
-    ax = _plot_result(ship=ship, result=result, key=key, changes=changes, ax=ax)
+    ax = _plot_result(ship=ship, result=result, key=key, changes=changes, ax=ax, plot_change_factor=plot_change_factor)
     return ax
 
-def _plot_result(ship, result, key, changes, ax=None):
+def _plot_result(ship, result, key, changes, plot_change_factor=True, ax=None):
 
     if ax is None:
         fig, ax = plt.subplots()
 
-    result['change factor'] = changes
-    result.plot(x='change factor', ax=ax)
-    ax.set_title('Variation of %s: %0.2f' % (key, ship[key]))
+    if plot_change_factor:
+        result['change factor'] = changes
+        result.plot(x='change factor', ax=ax)
+    else:
+        result.plot(x=key, ax=ax)
+
+    ax.set_title('Variation of %s: %0.3f' % (key, ship[key]))
     return ax
 
 def calculate(row, catch_error=False):
