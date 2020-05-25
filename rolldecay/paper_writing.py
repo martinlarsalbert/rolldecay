@@ -24,5 +24,5 @@ def save_fig(fig, name, full_page=False):
     fig.set_dpi(300)
     fig.set_size_inches(width, height)
     plt.tight_layout()
-    
+
     fig.savefig(fname=fname,dpi=300)
