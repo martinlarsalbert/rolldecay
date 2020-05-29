@@ -8,6 +8,9 @@ import rolldecayestimators.equations
 # \label{eq:roll_decay_equation_cubic}
 regexp_label = re.compile(pattern=r'\label{eq\:([^}]+)', flags=re.MULTILINE)
 
+# \input{equations/roll_decay_equation_himeno_linear}
+regexp_input = re.compile(pattern=r'\input{([^}]+)', flags=re.MULTILINE)
+
 def save_fig(fig, name, full_page=False):
     """
     Save a figure to the paper
@@ -33,7 +36,7 @@ def save_fig(fig, name, full_page=False):
 
     fig.savefig(fname=fname,dpi=300)
 
-def generate_nomenclature(paper_path=None):
+def generate_nomenclature(paper_path=None,exclude_dirs=['equations']):
     """
     Generate a nomenclature based on the equation labels in the tex files under paper_path folder
     :param paper_path: None->Default is present paper
@@ -44,10 +47,26 @@ def generate_nomenclature(paper_path=None):
     if paper_path is None:
         paper_path=rolldecay.paper_path
 
-    file_paths = _find_tex_files(paper_path=paper_path)
+    file_paths = _find_tex_files(paper_path=paper_path, exclude_dirs=exclude_dirs)
+
     for file_path in file_paths:
         with open(file_path, mode='r') as file:
             s = file.read()
+
+        eq_labels+=_find_eq_labels(s=s)
+
+    input_paths = _find_inputs_in_files(file_paths)
+    for file_path in input_paths:
+
+        if not os.path.exists(file_path):
+            file_path=os.path.join(paper_path,file_path)
+            _,ext = os.path.splitext(file_path)
+            if ext=='':
+                file_path+='.tex'
+
+        with open(file_path, mode='r') as file:
+            s = file.read()
+
 
         eq_labels+=_find_eq_labels(s=s)
 
@@ -57,10 +76,20 @@ def generate_nomenclature(paper_path=None):
 
     return latex_nomenclature
 
-def _find_tex_files(paper_path):
+def _find_tex_files(paper_path, exclude_dirs=['equations']):
 
     file_paths = []
     for root, dirs, files in os.walk(paper_path, topdown=False):
+
+        # Could this directory be excluded?
+        exclude=False
+        for exclude_dir in exclude_dirs:
+            if exclude_dir in root:
+                exclude=True
+                break
+        if exclude:
+            continue
+
         for name in files:
             if os.path.splitext(name)[-1]=='.tex':
                 path = os.path.join(root, name)
@@ -70,6 +99,23 @@ def _find_tex_files(paper_path):
 
 def _find_eq_labels(s:str):
     return regexp_label.findall(string=s)
+
+def _find_inputs_in_files(file_paths:list):
+
+    input_paths = []
+    for file_path in file_paths:
+        with open(file_path, mode='r') as file:
+            s = file.read()
+
+        input_paths+=_find_inputs(s=s)
+
+    input_paths=list(set(input_paths))  # Remove possible duplicates
+
+    return input_paths
+
+def _find_inputs(s:str):
+    return regexp_input.findall(string=s)
+
 
 def _match_sympy_equations(eq_labels):
     avaliable_equation_dict = {key: value for key, value in rolldecayestimators.equations.__dict__.items() if isinstance(value, sp.Eq)}
@@ -91,7 +137,8 @@ def _get_symbols(equation_dict:dict):
     return symbols
 
 def _latex_unit(unit:str):
-    latex_unit=unit.replace('*',r'\cdot ')
+    latex_unit = unit.replace('**', r'^')
+    latex_unit=latex_unit.replace('*',r'\cdot ')
     latex_unit='$%s$'%latex_unit
     return latex_unit
 
