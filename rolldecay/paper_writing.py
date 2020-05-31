@@ -19,7 +19,7 @@ def save_fig(fig, name, full_page=False):
     :return: None
     """
 
-    fname = os.path.join(rolldecay.paper_figures_path,'%s.pdf'%name)
+    fname = os.path.join(rolldecay.paper_figures_path,'%s.eps'%name)
     fig.tight_layout()
 
     if full_page:
