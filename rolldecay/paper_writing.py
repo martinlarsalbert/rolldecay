@@ -1,9 +1,16 @@
 import rolldecay
 import os
 import matplotlib.pyplot as plt
+import matplotlib
 import re
 import sympy as sp
 import rolldecayestimators.equations
+
+
+def setup(rcParams):
+    # Change to paper custom style:
+    matplotlibrc_path = os.path.join(os.path.dirname(__file__),'matplotlibrc')
+    #rcParams.update(matplotlib.rc_params_from_file(matplotlibrc_path))
 
 # \label{eq:roll_decay_equation_cubic}
 regexp_label = re.compile(pattern=r'\label{eq\:([^}]+)', flags=re.MULTILINE)
@@ -11,28 +18,34 @@ regexp_label = re.compile(pattern=r'\label{eq\:([^}]+)', flags=re.MULTILINE)
 # \input{equations/roll_decay_equation_himeno_linear}
 regexp_input = re.compile(pattern=r'\input{([^}]+)', flags=re.MULTILINE)
 
-def save_fig(fig, name, full_page=False):
+def save_fig(fig, name, full_page=False, width_cm=15):
     """
     Save a figure to the paper
     :param fig: figure handle
     :param name: figure name (without extension)
+    :param full_page: default None
+    :width_cm width in cm
     :return: None
     """
 
     fname = os.path.join(rolldecay.paper_figures_path,'%s.eps'%name)
+    #fname = os.path.join(rolldecay.paper_figures_path,'%s.pdf'%name)
     fig.tight_layout()
 
-    if full_page:
-        width = 10
-        height = width*1.618
+    size = fig.get_size_inches()
 
-    else:
-        width = 10
-        height = width / 1.618
+    cm_to_inches = 0.393700787
+    width = cm_to_inches*width_cm
 
-    fig.set_dpi(300)
-    fig.set_size_inches(width, height)
-    plt.tight_layout()
+    #if full_page:
+    #    height = width*1.618
+    #
+    #else:
+    #    height = width / 1.618
+
+    #fig.set_dpi(300)
+    #fig.set_size_inches(width, height)
+    #plt.tight_layout()
 
     fig.savefig(fname=fname,dpi=300)
 
