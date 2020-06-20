@@ -16,3 +16,4 @@ nbconvert
 antlr4-python3-runtime
 jupyterthemes
 cite2c
+tensorflow
