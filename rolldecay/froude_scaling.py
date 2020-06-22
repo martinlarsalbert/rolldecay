@@ -73,6 +73,12 @@ def froude_scale(data, description, skip=[]):
             continue
 
         unit = description.loc[key]['unit']
+
+        if unit=='knot':
+            raise ValueError('%s has unit knot, not allowed...' % key)
+        if unit=='knots':
+            raise ValueError('%s has unit knots, not allowed...' % key)
+
         denominator = denominators[unit]
         if denominator is None:
             nondimensional_value = value
