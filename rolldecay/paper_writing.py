@@ -5,7 +5,7 @@ import matplotlib
 import re
 import sympy as sp
 import rolldecayestimators.equations
-
+from latex_helpers.pylatex_extenders import GeneralContainer
 
 def setup(rcParams):
     # Change to paper custom style:
@@ -187,6 +187,22 @@ def _generate_latex_nomenclature(symbols):
 
     latex_nomenclature = r"\mbox{}" + '\n' + content + '\n' + r"\printnomenclature"
     return latex_nomenclature
+
+def save_table(file_path, tabular_tex:str, label:str, caption:str):
+
+    latex="""
+\\begin{table}[H]
+    \centering
+    \caption{%s}
+   %s
+    \label{%s}
+\end{table}
+    """ % (caption,tabular_tex,label)
+
+    container = GeneralContainer()
+    container.append(latex)
+
+    container.generate_tex(file_path)
 
 
 

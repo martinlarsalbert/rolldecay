@@ -2,7 +2,7 @@ from pylatex.base_classes.containers import Container
 from pylatex import NoEscape
 import sympy as sp
 from sympy.physics.vector.printing import vlatex
-
+import re
 
 class GeneralContainer(Container):
     _latex_name = 'generalcontainer'
@@ -81,3 +81,39 @@ class Multiline(Equation):
 
         s3 = '\\begin{aligned} \n %s \\\\ \n \\end{aligned}' % s2
         return s3
+
+
+def hatify_symbol(symbol):
+    """
+    Add hat sign instead of symbol_...hat
+    :param symbol:
+    :return:
+    """
+    name = symbol.name
+
+    if ('HAT' in symbol.name):
+        name = '\hat{%s}' % symbol.name.replace('_HAT', '')
+
+    if ('hat' in symbol.name):
+        name = '\hat{%s}' % symbol.name.replace('_hat', '')
+
+
+    result = re.search('_(.+)', name)
+    if result:
+        replacement = '_{%s}' % result.group(1)
+        name = re.subn('_(.+)', replacement, name, count=1)[0]
+
+    return sp.symbols(name)
+
+def hatify(equation):
+    """
+    Add hat sign instead of symbol_...hat in equation
+    :param equation:
+    :return:
+    """
+
+    new_equation = equation.copy()
+    for symbol in equation.free_symbols:
+        new_equation = new_equation.subs(symbol, hatify_symbol(symbol))
+
+    return new_equation
