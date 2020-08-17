@@ -28,8 +28,11 @@ def save_fig(fig, name, full_page=False, width_cm=15):
     :return: None
     """
 
-    fname = os.path.join(rolldecay.paper_figures_path,'%s.eps'%name)
-    #fname = os.path.join(rolldecay.paper_figures_path,'%s.pdf'%name)
+    fnames = [
+        os.path.join(rolldecay.paper_figures_path, '%s.eps' % name),
+        os.path.join(rolldecay.paper_figures_path, '%s.pdf' % name),
+    ]
+
     fig.tight_layout()
 
     size = fig.get_size_inches()
@@ -47,7 +50,8 @@ def save_fig(fig, name, full_page=False, width_cm=15):
     #fig.set_size_inches(width, height)
     #plt.tight_layout()
 
-    fig.savefig(fname=fname,dpi=300)
+    for fname in fnames:
+        fig.savefig(fname=fname,dpi=300)
 
 def generate_nomenclature(paper_path=None,exclude_dirs=['equations']):
     """
