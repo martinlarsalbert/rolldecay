@@ -28,3 +28,7 @@ from sklearn.pipeline import Pipeline
 from rolldecayestimators.transformers import CutTransformer, LowpassFilterDerivatorTransformer, ScaleFactorTransformer, OffsetTransformer
 from rolldecayestimators.direct_estimator_cubic import EstimatorQuadraticB, EstimatorCubic
 from rolldecayestimators.ikeda_estimator import IkedaQuadraticEstimator
+import rolldecayestimators.equations as equations
+import rolldecayestimators.lambdas as lambdas
+from sklearn.metrics import r2_score
+
