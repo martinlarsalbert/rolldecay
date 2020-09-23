@@ -30,5 +30,9 @@ from rolldecayestimators.direct_estimator_cubic import EstimatorQuadraticB, Esti
 from rolldecayestimators.ikeda_estimator import IkedaQuadraticEstimator
 import rolldecayestimators.equations as equations
 import rolldecayestimators.lambdas as lambdas
+from rolldecayestimators.substitute_dynamic_symbols import lambdify
+import rolldecayestimators.symbols as symbols
+import sympy as sp
+
 from sklearn.metrics import r2_score
 
