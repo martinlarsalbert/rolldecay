@@ -45,6 +45,19 @@ skip_default = [
     'B_e',
     'B_e_hat',
     'trim',
+    'B_44_1',
+    'B_F_1', 
+    'B_W_1', 
+    'B_E_1', 
+    'B_BK_1',
+    'B_L_1',
+    'B_44_2',
+    'B_F_2', 
+    'B_W_2', 
+    'B_E_2', 
+    'B_BK_2',
+    'B_L_2',
+    
 ]
 
 def froude_scale(data, description, skip=[]):

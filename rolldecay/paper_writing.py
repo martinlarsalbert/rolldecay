@@ -13,10 +13,10 @@ def setup(rcParams):
     #rcParams.update(matplotlib.rc_params_from_file(matplotlibrc_path))
 
 # \label{eq:roll_decay_equation_cubic}
-regexp_label = re.compile(pattern=r'\label{eq\:([^}]+)', flags=re.MULTILINE)
+regexp_label = re.compile(pattern=r'\\label{eq\:([^}]+)', flags=re.MULTILINE)
 
 # \input{equations/roll_decay_equation_himeno_linear}
-regexp_input = re.compile(pattern=r'\input{([^}]+)', flags=re.MULTILINE)
+regexp_input = re.compile(pattern=r'\\input{([^}]+)', flags=re.MULTILINE)
 
 def save_fig(fig, name, full_page=False, width_cm=15):
     """
@@ -194,6 +194,9 @@ def _generate_latex_nomenclature(symbols):
 
 def save_table(file_path, tabular_tex:str, label:str, caption:str):
 
+    tabular_tex=tabular_tex.replace('\$','$')
+    tabular_tex=tabular_tex.replace(r'\textasciicircum ','^')
+       
     latex="""
 \\begin{table}[H]
     \centering
