@@ -89,6 +89,7 @@ def generate_nomenclature(paper_path=None,exclude_dirs=['equations']):
 
     equation_dict = _match_sympy_equations(eq_labels=eq_labels)
     symbols = _get_symbols(equation_dict=equation_dict)
+    
     latex_nomenclature = _generate_latex_nomenclature(symbols=symbols)
 
     return latex_nomenclature
@@ -155,8 +156,8 @@ def _get_symbols(equation_dict:dict):
 
 def _latex_unit(unit:str):
     latex_unit = unit.replace('**', r'^')
-    latex_unit=latex_unit.replace('*',r'\cdot ')
-    latex_unit='$%s$'%latex_unit
+    #latex_unit=latex_unit.replace('*',r'\cdot ')
+    latex_unit='%s'%latex_unit
     return latex_unit
 
 
@@ -172,7 +173,7 @@ def _generate_latex_nomenclature(symbols):
     """
 
     content = ''
-    for name,symbol in symbols.items():
+    for name,symbol in sorted(symbols.items()):
         assert isinstance(symbol,sp.Symbol)
 
         description = ''
@@ -180,10 +181,15 @@ def _generate_latex_nomenclature(symbols):
 
         if hasattr(symbol,'description'):
             description=symbol.description
+            description=description[0].lower() + description[1:]
+        else:
+            if name == 't':
+                description='time'
+                unit='s'
 
         if hasattr(symbol, 'unit'):
             unit=_latex_unit(unit=symbol.unit)
-
+            
         latex = symbol._repr_latex_()
 
         row = r'\nomenclature{'+latex+'}{'+description+ r'\nomunit{' + unit + '}}\n'

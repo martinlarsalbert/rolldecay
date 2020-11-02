@@ -97,7 +97,10 @@ def hatify_symbol(symbol):
     if ('hat' in symbol.name):
         name = '\hat{%s}' % symbol.name.replace('_hat', '')
 
-
+        
+    name = name.replace('omega0',r'\omega_0')  # Dirty last minute fix
+    name = name.replace('phi_a',r'\phi_a')  # Dirty last minute fix
+       
     result = re.search('_(.+)', name)
     if result:
         replacement = '_{%s}' % result.group(1)
@@ -115,5 +118,26 @@ def hatify(equation):
     new_equation = equation.copy()
     for symbol in equation.free_symbols:
         new_equation = new_equation.subs(symbol, hatify_symbol(symbol))
+
+    return new_equation
+
+def rename_symbol(symbol,renamers):
+    
+    if symbol.name in renamers:
+        return renamers[symbol.name]
+    else:
+        return symbol
+
+def rename(equation, renamers):
+    """
+    Rename certain symbols in the equation 
+    :param equation:
+    :param reanmers {r'\phi':r'phi_a'}
+    :return:
+    """
+
+    new_equation = equation.copy()
+    for symbol in equation.free_symbols:
+        new_equation = new_equation.subs(symbol, rename_symbol(symbol, renamers=renamers))
 
     return new_equation
