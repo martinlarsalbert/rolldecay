@@ -83,4 +83,3 @@ def test_generate_nomenclature():
 
     latex_nomenclature = paper_writing.generate_nomenclature(paper_path=paper_path)
     a = 1
-

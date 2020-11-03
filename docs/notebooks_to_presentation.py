@@ -11,7 +11,7 @@ import shutil
 class ChangeIbynbLink(nbconvert.preprocessors.Preprocessor):
 
     def preprocess_cell(self,cell, resources, index):
-                
+
         if hasattr(cell,'outputs'):
 
             for output in cell.outputs:
@@ -94,6 +94,3 @@ def convert_notebooks(build_path = 'html',path = ''):
 if __name__ == "__main__":
 
     convert_notebooks()
-
-
-

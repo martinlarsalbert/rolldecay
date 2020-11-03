@@ -1,7 +1,7 @@
 function [bw44] = Bw_4444(w,V)
 
 global g d ScaleF
-    
+
     Bw0=Bw0_4444(w*sqrt(ScaleF))*ScaleF^4.5;
     OMEGA=w*V/g;
     zeta_d=w^2*d/g;

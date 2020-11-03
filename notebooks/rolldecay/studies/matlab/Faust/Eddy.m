@@ -88,18 +88,18 @@ B44E0=0;
 for i = 1:length(x)-1
     %for i = 4:18
     M    = bwl(i)/(2*(1+a1(i)+a3(i)));      %!!!!!! bwl eller B??
-    
+
     fi1=0;
     fi2=0.5*acos(a1(i)*(1+a3(i)))/(4*a3(i));
     rmax_fi1 = M*sqrt(((1+a1(i))*sin(fi1)-a3(i)*sin(fi1))^2+((1-a1(i))*cos(fi1)-a3(i)*cos(fi1))^2);
     rmax_fi2 = M*sqrt(((1+a1(i))*sin(fi2)-a3(i)*sin(fi2))^2+((1-a1(i))*cos(fi2)-a3(i)*cos(fi2))^2);
-    
+
     if rmax_fi2 > rmax_fi1
         fi = fi2;
     else
         fi = fi1;
     end
-    
+
     B0 = -2*a3(i)*sin(5*fi)+a1(i)*(1-a3(i))*sin(3*fi)+((6+3*a1(i))*a3(i)^2+(3*a1(i)+a1(i)^2)*a3(i)+a1(i)^2)*sin(fi);
     A0 = -2*a3(i)*cos(5*fi)+a1(i)*(1-a3(i))*cos(3*fi)+((6-3*a1(i))*a3(i)^2+(a1(i)^2-3*a1(i))*a3(i)+a1(i)^2)*cos(fi);
     H = 1+a1(i)^2+9*a3(i)^2+2*a1(i)*(1-3*a3(i))*cos(2*fi)-6*a3(i)*cos(4*fi);
@@ -107,28 +107,28 @@ for i = 1:length(x)-1
     sigma_p=sigma(i)
     %H0_p=H0(i)/(1-OG/d);
     H0_p=bwl(i)/(2*Ts(i));
-    
+
     f3=1+4*exp(-1.65*10^5*(1-sigma(i))^2);
-    
+
     %gamma=sqrt(pi)*f3*(max(rmax_fi1,rmax_fi2)+2*M/H)*sqrt(B0^2*A0^2)/(2*d*(1-OG/d)*sqrt(H0_p*sigma_p)); %
     gamma=sqrt(pi)*f3*(max(rmax_fi1,rmax_fi2)+2*M/H*sqrt(B0^2*A0^2))/(2*Ts(i)*sqrt(H0(i)*(sigma_p+OG/Ts(i)))); %Journee
-    
+
     f1= 0.5*(1+tanh(20*(sigma(i)-0.7)));
     f2=0.5*(1-cos(pi*sigma(i)))-1.5*(1-exp(-5*(1-sigma(i))))*(sin(pi*sigma(i)))^2;
-    
-    
-    
+
+
+
     Cp= 0.5*(0.87*exp(-gamma)-4*exp(-0.187*gamma)+3);
     %Cp= 0.35*exp(-gamma)-2*exp(-0.187*gamma)+1.5;
-    
+
     Cr=((1-f1*R/d)*(1-OG/d)+f2*(H0(i)-f1*R/d)^2)*Cp*(max(rmax_fi1,rmax_fi2)/d)^2
     %Cr=((1-f1*R/d)*(1-OG/d+f1*R/d)+f2*(H0(i)-f1*R/d)^2)*Cp*(max(rmax_fi1,rmax_fi2)/d)^2 %lagt till termen +f1*R/d i andra faktorn enl journe
-    
-    
-    
+
+
+
     Bp44E0=4*ra*d^4*wE*fi_a*Cr/(3*pi);
     Bs44E0=Bp44E0*(x(i+1)-x(i));
-    
+
     B44E0=B44E0+Bs44E0;
 end
 
@@ -137,7 +137,3 @@ B44E=B44E0*1/(1+K^2)
 
 
 %BE0nd=B44E0*wE/(2*ra*disp*g*(16*ScaleF-vcg));
-
-
-
-

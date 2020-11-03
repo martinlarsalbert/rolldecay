@@ -52,9 +52,9 @@ B44BKW0_vec = [];
 
 Vvec=[0:1:10];
 for V=Vvec
-    
+
     [B44E] = Eddy(wE,fi_a,V)
-    EDDY=[EDDY B44E] 
+    EDDY=[EDDY B44E]
 
 end
 
@@ -66,10 +66,10 @@ V=0;
 w_hats = linspace(0,1,100);
 EDDY=[];
 for w_hat=w_hats
-    
+
     w=sqrt(2)*w_hat/sqrt(B/g);
     [B44E] = Eddy(w,fi_a,V)
-    EDDY=[EDDY B44E] 
+    EDDY=[EDDY B44E]
 
 end
 

@@ -42,29 +42,29 @@ C
       if (BD.lt.2.5 .or. 4.5.lt.BD) then
        write(*,*) "Please confirm the range of B/d [2.5 < B/d < 4.5]"
        go to 100
-      end if 
+      end if
 C
-200   write(*,*) "BLOCK COEFFICIENT - Cb [0.5 < Cb < 0.85]" 
+200   write(*,*) "BLOCK COEFFICIENT - Cb [0.5 < Cb < 0.85]"
       read(*,*) CB
       if (CB.lt.0.5 .or. 0.85.lt.CB) then
        write(*,*) "Please confirm the range of Cb [0.5 < Cb < 0.85]"
-       go to 200 
-      end if 
+       go to 200
+      end if
 C
 300   write(*,*) "MIDSHIP SECTION COEFFICIENT - Cm [0.9 < Cm < 0.99]"
       read(*,*) CMID
       if (CMID.lt.0.9 .or. 0.99.lt.CMID) then
        write(*,*) "Please confirm the range of Cm [0.9 < Cm < 0.99]"
        go to 300
-      end if 
+      end if
 C
 400   write(*,*) "OG/d [-1.5 < OG/d < 0.2]"
       write(*,*) "Downward direction is positive."
       read(*,*) OGD
       if (OGD.lt.-1.5 .or. 0.2.lt.OGD) then
        write(*,*) ' Please confirm the range of OG/d [-1.5ÅOGdÅ0.2]. '
-       go to 400      
-      end if 
+       go to 400
+      end if
 C
       write(*,*) "ROLL ANGLE - fo [deg.]"
       read(*,*) PHI
@@ -73,12 +73,12 @@ C
       write(*,*) "WAVE PERIOD - Tw [sec.] [f0HAT 1.0]"
       read(*,*) TW
       OMEGA=2*PI/TW
-      
+
       BRTH=LPP/LB ; DRAFT=BRTH/BD ; OMEGAHAT=OMEGA*SQRT(BRTH/2/9.81)
       if (OMEGAHAT.gt.1.0) then
        write(*,*) "Please confirm the range of f0HAT [f0HAT > 1.0]"
        go to 400
-      end if 
+      end if
 
 C     *** Input Bilge Keel ***
       write(*,*) '----- INPUT BILGE KEEL DATA -----'
@@ -86,27 +86,27 @@ C     *** Input Bilge Keel ***
      & ' Do you calculate roll damping of the Bilge Keel component?
      &   - (Y or N) '
       read(*,*) BKCOMP
-      if (BKCOMP .eq. 'N' .or. BKCOMP .eq. 'n') then 
+      if (BKCOMP .eq. 'N' .or. BKCOMP .eq. 'n') then
        go to 700
       end if
-C      
+C
 500   write(*,*) ' RATIO of BILGE KEEL LENGTH to SHIP LENGTH - lBK/Lpp
      & [0.05ÅÖlBKÅÖ0.4] : '
       read(*,*) LBKL
       if (LBKL.lt.0.05 .or. 0.4.lt.LBKL) then
-       write(*,*) 
+       write(*,*)
      & ' Please confirm the range of lBK/Lpp [0.05ÅlBK/LppÅ0.4]. '
-       go to 500      
-      end if 
+       go to 500
+      end if
 C
 600   write(*,*) ' RATIO of BILGE KEEL BREADTH to SHIP BREADTH - bBK/B
      & [0.01ÅÖbBKÅÖ0.06] : '
       read(*,*) BBKB
       if (BBKB.lt.0.01 .or. 0.06.lt.BBKB) then
-       write(*,*) 
+       write(*,*)
      &  ' Please confirm the range of bBK/B [0.01 < bBK/B < 0.06]. '
        go to 600
-      end if 
+      end if
 
 C     *** Data Confirmation ***
 700   write(*,*) '----- PRINCIPAL PARTICULARS -----'
@@ -119,14 +119,14 @@ C     *** Data Confirmation ***
       write(*,770) PHI
       write(*,780) TW
 
-      if (BKCOMP .eq. 'N' .or. BKCOMP .eq. 'n') then 
+      if (BKCOMP .eq. 'N' .or. BKCOMP .eq. 'n') then
        go to 900
       end if
 
       write(*,790) LBKL
       write(*,800) BBKB
-      
-710   format(7x,'Lpp',6x,'[m]',':',4x,f6.2)   
+
+710   format(7x,'Lpp',6x,'[m]',':',4x,f6.2)
 720   format(7x,'L/B',9x,':',4x,f6.2)
 730   format(7x,'B/d',9x,':',4x,f6.2)
 740   format(7x,'Cb',10x,':',4x,f6.2)
@@ -135,11 +135,11 @@ C     *** Data Confirmation ***
 770   format(7x,'É”',4x,'[deg.]',':',4x,f6.2)
 780   format(7x,'Tw',4x,'[sec.]',':',4x,f6.2)
 790   format(7x,'lBK/Lpp',5x,':',4x,f6.2)
-800   format(7x,'bBK/B',7x,':',4x,f6.2)    
+800   format(7x,'bBK/B',7x,':',4x,f6.2)
 
 900   write(*,*) ' Is it OK (Y or N) ? '
       read(*,*) OK
-      if (OK .eq. 'N' .or. OK .eq. 'n') then 
+      if (OK .eq. 'N' .or. OK .eq. 'n') then
        go to 90
       end if
 C     ********************************************************************
@@ -269,7 +269,7 @@ C     *** Bilge Keel Component ***
         BBKHAT=ABK*EXP(BBK1+BBK2*CMID**BBK3)*OMEGAHAT
       endif
 C     *** Total Roll Damping ***
-      B44HAT=BFHAT+BWHAT+BEHAT+BBKHAT      
+      B44HAT=BFHAT+BWHAT+BEHAT+BBKHAT
 C     *******************************
 C     ***     Output to files     ***
 C     *******************************
@@ -284,13 +284,13 @@ C     *******************************
       write(10,*) 'É”(PHI)',PHI
       write(10,*) 'Tw',TW
 
-      if (BKCOMP .eq. 'N' .or. BKCOMP .eq. 'n') then 
+      if (BKCOMP .eq. 'N' .or. BKCOMP .eq. 'n') then
        go to 1000
       end if
 
       write(10,*) 'lBK/Lpp',LBKL
       write(10,*) 'bBK/B',BBKB
-      
+
 1000  write(10,*) ' ----- Cal. by simplified prediction method ----- '
       write(10,*) ' BFHAT ',' BWHAT ',' BEHAT ',' BBKHAT ',' B44HAT '
       write(10,*) BFHAT,BWHAT,BEHAT,BBKHAT,B44HAT

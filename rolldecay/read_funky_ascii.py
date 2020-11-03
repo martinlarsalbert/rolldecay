@@ -23,4 +23,3 @@ def read(ascii_path :str)->pd.DataFrame:
     df['phi'] = np.deg2rad(df['phi'])
 
     return df
-

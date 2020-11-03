@@ -4,7 +4,7 @@ class BisSystem():
     """ Class that handles conversion from and to bis system"""
 
     def __init__(self,lpp,volume,g = 9.81,rho = 1000, units={}):
-        
+
         self.lpp = lpp
         self.volume = volume
         self.g = g
@@ -33,12 +33,12 @@ class BisSystem():
         }
 
     def __update_denomintors(self):
-        
+
         rho = self.rho
         volume = self.volume
         Lpp = self.lpp
         g = self.g
-        
+
         denominators = {}
         denominators['non_dimensional']         = 1
         denominators['mass']                    = rho*volume
@@ -81,20 +81,20 @@ class BisSystem():
         return denominator
 
     def to_bis(self,key,value):
-        
+
         denominator = self.get_denominator(key = key)
         nondimensional_value = value / denominator
-        
+
         return nondimensional_value
-    
-        
+
+
     def from_bis(self,key,nondimensional_value):
-        
+
         denominator = self.get_denominator(key = key)
         value = nondimensional_value * denominator
-        
+
         return value
-    
+
     @staticmethod
     def only_numeric(df):
         mask = df.dtypes != 'object'
@@ -102,20 +102,20 @@ class BisSystem():
         return df[numeric_columns]
 
     def df_to_bis(self,df):
-        
+
         nondimensional_df = df.copy()
 
         for key,data in self.only_numeric(nondimensional_df).items():
             nondimensional_df[key] = self.to_bis(key = key,value = data)
-            
+
         nondimensional_df['bis'] = True
         return nondimensional_df
- 
+
     def df_from_bis(self,nondimensional_df):
-       
+
        df = nondimensional_df.copy()
        for key,data in self.only_numeric(nondimensional_df).items():
            df[key] = self.from_bis(key = key,nondimensional_value = data)
-           
+
        df['bis'] = False
        return df

@@ -56,6 +56,3 @@ D = sp.symbols('D')
 phi_0 = me.dynamicsymbols('phi_0')
 phi_0_dot = phi_0.diff()
 phi_0_dotdot = phi_0_dot.diff()
-
-
-

@@ -23,7 +23,7 @@ ON %s.run_id == run.id
             ON run.model_number == models.model_number
                 INNER JOIN ships
                 ON models.ship_name == ships.name
-        
+
 """
 
 engine = create_engine('sqlite:///' + data.mdl_db_path)

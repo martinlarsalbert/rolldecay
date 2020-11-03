@@ -78,8 +78,8 @@ def create_html_table(symbols:list):
     html = """
         <tr>
             <th>Variable</th>
-            <th>Description</th> 
-            <th>SI Unit</th> 
+            <th>Description</th>
+            <th>SI Unit</th>
         </tr>
         """
 
@@ -93,8 +93,8 @@ def create_html_table(symbols:list):
             html_row = """
             <tr>
                 <td>$%s$</td>
-                <td>%s</td> 
-                <td>%s</td> 
+                <td>%s</td>
+                <td>%s</td>
             </tr>
             """ % (sp.latex(symbol), symbol.description, symbol.unit)
 

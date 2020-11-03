@@ -10,7 +10,7 @@ j    =   1;                 % Station number [-]
 tata =   A(j)/(B*d);
 
 % T=24; wE   = pi*1/T;        % circular frequency
-% 
+%
 % fi_a =   2*pi/180;          % roll amplitude !!rad??
 
 
@@ -29,11 +29,11 @@ m5 = (0.414*Ho+0.0651*m1^2-(0.382*Ho+0.0106)*m1)/((Ho-0.215*m1)*(1-0.215*m1));
 m6 = (0.414*Ho+0.0651*m1^2-(0.382+0.0106*Ho)*m1)/((Ho-0.215*m1)*(1-0.215*m1));
 
 if So > 0.25*pi*R
-    m7 = So/d-0.25*pi*m1; 
+    m7 = So/d-0.25*pi*m1;
 else
     m7=0;
 end
-    
+
 if So > 0.25*pi*R
     m8 = m7+0.414*m1;
 else
@@ -69,6 +69,3 @@ fi      = fi_a;
 dBK     = lBK*((2*d/B)/sqrt(1+(2*d/B)^2)*cos(fi)-sin(fi)/sqrt((1+(2*d/B)^2)));
 
 B44BKW0 = C_BK*exp(-wE^2/g*dBK); %non dimensional wave damping from BK, ITTC
-
-
- 

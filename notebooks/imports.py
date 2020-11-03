@@ -36,4 +36,3 @@ import sympy as sp
 
 from sklearn.metrics import r2_score
 import rolldecay.paper_writing as paper_writing
-

@@ -1,7 +1,7 @@
 function [bw44] = Bw_S175(w,V)
 
 global g d
-    
+
     Bw0=Bw0_S175(w);
     OMEGA=w*V/g;
     zeta_d=w^2*d/g;

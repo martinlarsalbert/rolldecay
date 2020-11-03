@@ -209,7 +209,7 @@ print(inspect.getsource(calculate_acceleration))
 
     def _lambdifygenerated(d, omega0, p_old, phi_old, zeta):
         return (-d*p_old*abs(p_old) - omega0**2*phi_old - 2*omega0*p_old*zeta)
-    
+
 
 
 
@@ -219,7 +219,7 @@ print(inspect.getsource(calculate_velocity))
 
     def _lambdifygenerated(p_old):
         return (p_old)
-    
+
 
 
 

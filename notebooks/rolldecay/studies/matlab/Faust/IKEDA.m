@@ -52,36 +52,36 @@ for V=Vvec
     % components
     % wave
     [bw44] = Bw_4444(wE,V);
-    
+
     %bilge keel
     [Bp44BK_N0,Bp44BK_H0,B44BK_L,B44BKW0] = BilgeKeel(wE,fi_a,V);
-    
+
     B44BK_N0 = Bp44BK_N0 * LBK%
     B44BK_H0 = Bp44BK_H0 * LBK%
     B44BK_L  = B44BK_L
-    
+
     B44_BK = B44BK_N0+B44BK_H0+B44BK_L
-    
+
     B44BKW0 = B44BKW0/ND_factorB;
-    
+
     % Frictional
     B44F = Frictional(wE,fi_a,V)
-    
+
     % Hull lift
     [B44L] = HullLift(V)
     % hold on
     % plot(V,bw44,'*',V,B44_BK,'.',V,B44F,'x',V,B44L,'o')
     % hold on
-    
+
     [B44E] = Eddy(wE,fi_a,V)
-    
+
     Wave=[Wave bw44]*1;
     Bilgekeel=[Bilgekeel B44_BK]*1;
     %Bilgekeel=[Bilgekeel B44_BK]*1;
     Friction=[Friction B44F]*1;
     Lift=[Lift B44L]*1;
     EDDY=[EDDY B44E]
-    
+
     B44BKW0_vec = [B44BKW0_vec B44BKW0];
     B44BK_N0vec = [B44BK_N0vec B44BK_N0];
     B44BK_H0vec = [B44BK_H0vec B44BK_H0];
@@ -148,4 +148,3 @@ box on
 % subplot(5,1,5), area(Vvec,[B44BK_N0vec; B44BK_H0vec; B44BK_Lvec]'*ND_factor),title('Bilgekeel(\omega_E,\phi_a,V)')
 % xlabel('speed [m/s]')
 % legend(['BK_N_0'],['BK_H_0'],['BK_L'])
-

@@ -89,7 +89,7 @@ def generate_nomenclature(paper_path=None,exclude_dirs=['equations']):
 
     equation_dict = _match_sympy_equations(eq_labels=eq_labels)
     symbols = _get_symbols(equation_dict=equation_dict)
-    
+
     latex_nomenclature = _generate_latex_nomenclature(symbols=symbols)
 
     return latex_nomenclature
@@ -189,7 +189,7 @@ def _generate_latex_nomenclature(symbols):
 
         if hasattr(symbol, 'unit'):
             unit=_latex_unit(unit=symbol.unit)
-            
+
         latex = symbol._repr_latex_()
 
         row = r'\nomenclature{'+latex+'}{'+description+ r'\nomunit{' + unit + '}}\n'
@@ -202,7 +202,7 @@ def save_table(file_path, tabular_tex:str, label:str, caption:str):
 
     tabular_tex=tabular_tex.replace('\$','$')
     tabular_tex=tabular_tex.replace(r'\textasciicircum ','^')
-       
+
     latex="""
 \\begin{table}[H]
     \centering
@@ -216,10 +216,3 @@ def save_table(file_path, tabular_tex:str, label:str, caption:str):
     container.append(latex)
 
     container.generate_tex(file_path)
-
-
-
-
-
-
-
