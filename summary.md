@@ -1,8 +1,3 @@
-# rolldecay
-![](roll-decay-logo.png)
-The repository was used for the work conducted for the paper "Analysis of roll damping_model scale data".
-The actual LaTeX paper is however placed [here](https://github.com/martinlarsalbert/A-semi-empirical-method-for-predicting-roll-damping-based-on-machine-learning).
-
 # Summary
 Here is a summary of some of the work that has been conducted for the paper [ "Analysis of roll damping_model scale data"](https://github.com/martinlarsalbert/A-semi-empirical-method-for-predicting-roll-damping-based-on-machine-learning). This is mainly for [Martin](https://martinlarsalbert.github.io/blog/about/) to remember, but it is of course open for anyonw to have a look. The data used in this project is unfortunatelly not available in this repo, due to IP-rights and the stored notebooks have consequently no output saved.
 
@@ -31,6 +26,3 @@ Studies conducted, where no specific material made it to the paper.
 
 ## Logbook
 During the later part of this project I started to write a [logbook.ipynb](notebooks/rolldecay/logbook.ipynb) each day about the latest findings.
-
-
-
