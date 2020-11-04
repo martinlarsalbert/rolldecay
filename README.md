@@ -26,7 +26,7 @@ Studies conducted, where no specific material made it to the paper.
 * [00.5_maa_linear_damping_analytical_solution.ipynb](notebooks\rolldecay/02_roll_damping_DB/00.5_maa_linear_damping_analytical_solution.ipynb)
 * [05.1_model_test_sensitivity.ipynb](notebooks\rolldecay/02_roll_damping_DB/05.1_model_test_sensitivity.ipynb)
 * Exploring the equivalent damping equation $B_e$ in: [08.1_Be_equation.ipynb](notebooks\rolldecay/04_simplified_ikeda/08.1_Be_equation.ipynb) (This one could need more attention)
-* Regression: [notebooks\rolldecay/05.1_maa_new_method_and_correction.ipynb](05_new_method/notebooks\rolldecay/05.1_maa_new_method_and_correction.ipynb)
+* Regression: [notebooks\rolldecay/05.1_maa_new_method_and_correction.ipynb](notebooks\rolldecay/05_new_method/notebooks\rolldecay/05.1_maa_new_method_and_correction.ipynb)
 * Original Ikeda method for S175 ship: [01.02_ikeda_S175.ipynb](notebooks\rolldecay/rolldecay/06_ikeda/01.02_ikeda_S175.ipynb)
 * Strip theory calculations were done with [ScoresII](notebooks\rolldecay/https://github.com/martinlarsalbert/pyscores2)
 
@@ -35,7 +35,7 @@ Studies conducted, where no specific material made it to the paper.
 ## Logbook
 During the later part of this project I started to write a [logbook.ipynb](notebooks\rolldecay/notebooks/rolldecay/logbook.ipynb) each day about the latest findings.
 
-That's all.
+That's all...
 
 
 ```python
