@@ -35,7 +35,7 @@ Studies conducted, where no specific material made it to the paper.
 ## Logbook
 During the later part of this project I started to write a [notebooks/rolldecay/logbook.ipynb](notebooks/rolldecay/logbook.ipynb) each day about the latest findings.
 
-That's all++
+That's all+++
 
 
 ```python
