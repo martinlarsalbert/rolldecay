@@ -9,7 +9,7 @@ Here is a summary of some of the work that has been conducted for the paper [ "A
 
 
 ## Paper material
-* Many of the governig equations have been defined using [SymPy](https://www.sympy.org/) in :[00.1_maa_equation.ipynb](notebooks/rolldecay/rolldecay/02_roll_damping_DB/00.1_maa_equation.ipynb).
+* Many of the governig equations have been defined using [SymPy](https://www.sympy.org/) in :[00.1_maa_equation.ipynb](notebooks/rolldecay/02_roll_damping_DB/00.1_maa_equation.ipynb).
 * Building the roll damping database was done with [04.2_maa_mdl_db_build.ipynb](notebooks/rolldecay/02_roll_damping_DB/04.2_maa_mdl_db_build.ipynb)
 * **Figure 2**: *Number of tests per ship type*: [01.2_maa_ship_selection.ipynb](notebooks/rolldecay/05_new_method/01.2_maa_ship_selection.ipynb)
 * **Figure 3**: *Roll decay model test, linear-, quadratic- and cubic-model*: [01.1_maa_mdl_db_damping_classification.ipynb](notebooks/rolldecay/03_roll_damping_classification/01.1_maa_mdl_db_damping_classification.ipynb)
@@ -19,15 +19,15 @@ Here is a summary of some of the work that has been conducted for the paper [ "A
 * **Figure 6**: *SI-method input parameter variation and data base ships* : [07.3_si_sensitivity2.ipynb](notebooks/rolldecay/04_simplified_ikeda/07.3_si_sensitivity2.ipynb)
 * **Figure 7**: *Comparison of SI, Ikeda and model tests* : [07.3_si_sensitivity2.ipynb](notebooks/rolldecay/04_simplified_ikeda/07.3_si_sensitivity2.ipynb)
 * **Table 2**: *Validation of SI and Ikeda* : [07.3_si_sensitivity2.ipynb](notebooks/rolldecay/04_simplified_ikeda/07.3_si_sensitivity2.ipynb)
-* **Table 3**: *Statistics from cross validations with all models* : [notebooks/rolldecay/05.1_maa_new_method_and_correction.ipynb](notebooks/rolldecay/05.1_maa_new_method_and_correction.ipynb)
+* **Table 3**: *Statistics from cross validations with all models* : [05.1_maa_new_method_and_correction.ipynb](notebooks/rolldecay/05_new_method/05.1_maa_new_method_and_correction.ipynb)
 
 ## Studies
 Studies conducted, where no specific material made it to the paper.
 * [00.5_maa_linear_damping_analytical_solution.ipynb](notebooks/rolldecay/02_roll_damping_DB/00.5_maa_linear_damping_analytical_solution.ipynb)
 * [05.1_model_test_sensitivity.ipynb](notebooks/rolldecay/02_roll_damping_DB/05.1_model_test_sensitivity.ipynb)
 * Exploring the equivalent damping equation $B_e$ in: [08.1_Be_equation.ipynb](notebooks/rolldecay/04_simplified_ikeda/08.1_Be_equation.ipynb) (This one could need more attention)
-* Regression: [notebooks/rolldecay/05.1_maa_new_method_and_correction.ipynb](05_new_method/notebooks/rolldecay/05.1_maa_new_method_and_correction.ipynb)
-* Original Ikeda method for S175 ship: [01.02_ikeda_S175.ipynb](notebooks/rolldecay/rolldecay/06_ikeda/01.02_ikeda_S175.ipynb)
+* Regression: [05.1_maa_new_method_and_correction.ipynb](notebooks/rolldecay/05_new_method/05.1_maa_new_method_and_correction.ipynb)
+* Original Ikeda method for S175 ship: [01.02_ikeda_S175.ipynb](notebooks/rolldecay/06_ikeda/01.02_ikeda_S175.ipynb)
 * Strip theory calculations were done with [ScoresII](https://github.com/martinlarsalbert/pyscores2)
 
 
@@ -35,7 +35,7 @@ Studies conducted, where no specific material made it to the paper.
 ## Logbook
 During the later part of this project I started to write a [notebooks/rolldecay/logbook.ipynb](notebooks/rolldecay/logbook.ipynb) each day about the latest findings.
 
-That's all+++
+That's all+
 
 
 ```python
