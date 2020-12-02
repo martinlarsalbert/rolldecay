@@ -18,3 +18,5 @@ jupyterthemes
 cite2c
 tensorflow
 pre-commit
+python-dotenv
+psycopg2

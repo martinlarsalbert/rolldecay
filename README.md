@@ -18,7 +18,7 @@ Here is a summary of some of the work that has been conducted for the paper [ "A
 * **Figure 5**: *SI-method with and outside limits vs. model tests*: [10.2_si_limits.ipynb](notebooks/rolldecay/04_simplified_ikeda/10.2_si_limits.ipynb)
 * **Figure 6**: *SI-method input parameter variation and data base ships* : [07.3_si_sensitivity2.ipynb](notebooks/rolldecay/04_simplified_ikeda/07.3_si_sensitivity2.ipynb)
 * **Figure 7**: *Comparison of SI, Ikeda and model tests* : [07.3_si_sensitivity2.ipynb](notebooks/rolldecay/04_simplified_ikeda/07.3_si_sensitivity2.ipynb)
-* **Table 2**: *Validation of SI and Ikeda* : [07.3_si_sensitivity2.ipynb](notebooks/rolldecay/04_simplified_ikeda/07.3_si_sensitivity2.ipynb)
+* **Table 2**: *Validation of SI and Ikeda* : [01.05_ikeda_many_quadratic](notebooks/rolldecay/06_ikeda/01.05_ikeda_many_quadratic.ipynb)
 * **Table 3**: *Statistics from cross validations with all models* : [05.1_maa_new_method_and_correction.ipynb](notebooks/rolldecay/05_new_method/05.1_maa_new_method_and_correction.ipynb)
 
 ## Studies

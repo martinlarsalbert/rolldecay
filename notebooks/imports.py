@@ -22,7 +22,7 @@ import matplotlib.pyplot as plt
 import copy
 from rolldecay.bis_system import BisSystem
 from rolldecay import database
-from mdldb.tables import Run
+from mdldb.run
 
 from sklearn.pipeline import Pipeline
 from rolldecayestimators.transformers import CutTransformer, LowpassFilterDerivatorTransformer, ScaleFactorTransformer, OffsetTransformer

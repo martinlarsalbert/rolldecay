@@ -10,6 +10,13 @@ import signal_lab.mdl_to_evaluation
 import rolldecay
 import os
 
+from dotenv import load_dotenv
+dirname = os.path.dirname(__file__)
+base_path = os.path.split(dirname)[0]
+dotenv_path = os.path.join(base_path, '.env')
+assert os.path.exists(dotenv_path)
+load_dotenv(dotenv_path)  # Loading environment variables (where the password is one of them)
+
 sql_template = """
 SELECT * from
 %s
@@ -26,7 +33,14 @@ ON %s.run_id == run.id
 
 """
 
-engine = create_engine('sqlite:///' + data.mdl_db_path)
+#engine = create_engine('sqlite:///' + data.mdl_db_path)
+
+# Password is retrieved from the environment variable "password"
+pw = os.environ.get('password')
+if not pw:
+    raise ValueError('You need to define environment variable "password" with the password to the mdl database.\n The easiest way is to add a file ".env" in the root of this repo containing: password="..."')
+
+engine = create_engine(r'postgresql://sspauser:' + pw + r'@ais01:5432/mdl')
 
 def load(rolldecay_table_name='rolldecay_direct_improved',sql=None,only_latest_runs=True, limit_score=0.96,
          include_softmooring=False, exclude_table_name=None):
